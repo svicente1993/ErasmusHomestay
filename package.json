@@ -1,29 +1,30 @@
 {
   "name": "ErasmusHomestay",
   "version": "1.0.0",
-  "description": "Project Final to Salesianos Triana. ErasmusHomestay is an app developed by Santiago Vicente Aguilar, to administration data of ErasmusHomestay Android App",
+  "description": "Final project to Salesianos Triana",
   "main": "app.js",
-  "scripts": {
-    "test": "echo \\\"Error: no test specified\\\" && exit 1"
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/svicente1993/ErasmusHomestay.git"
-  },
-  "author": "Santiago Vicente Aguilar",
-  "license": "ISC",
+},
   "bugs": {
-    "url": "https://github.com/svicente1993/ErasmusHomestay/issues"
-  },
+      "url": "https://github.com/svicente1993/ErasmusHomestay/issues"
+},
   "homepage": "https://github.com/svicente1993/ErasmusHomestay",
   "devDependencies": {
    "browser-sync": "^2.2.2",
    "gulp": "^3.8.11",
    "gulp-jshint": "^1.9.4",
    "run-sequence": "^1.0.2"
-  },
-  "peerDependencies": {
+},
+ "peerDependencies": {
    "gulp": "^3.8.11",
    "browser-sync": "^2.2.2"
-  }
+},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+},
+  "author": "Santiago Vicente Aguilar",
+  "license": "ISC"
 }
