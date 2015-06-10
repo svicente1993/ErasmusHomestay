@@ -1,5 +1,6 @@
 <div class="container">
     <div class="row">
+      <!--<button ng-click="deleteUser()">Delete</button>-->
       <img class="center-block europa" src="./assets/img/europa2.jpg" usemap="#mapeuropa">
       <map id="mapeuropa" name="mapeuropa">
       	<area id="spain" shape="poly" alt="Spain" title="Spain" 
@@ -7,6 +8,8 @@
       		ng-click="goToAdverts($event)" target="_self" />
       	<area id="spain-2" shape="rect" alt="Spain" title="Spain" coords="140,426,146,435" 
       		ng-click="goToAdverts($event)" target="_self" />
+        <area id="ireland" shape="poly" alt="" title="" 
+          coords="88,217,89,224,98,230,113,227,122,229,133,203,127,201,118,198,121,190,132,184,123,183,115,190,118,195,113,196,104,191,102,194,104,199,99,201,106,207,98,212,94,214,99,214,87,215" ng-click="goToAdverts($event)" target="_self" />
       </map>
       </map>
     </div>

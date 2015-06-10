@@ -6,7 +6,7 @@ advertsController.controller('AdvertsController',
 {
 	var  country = $stateParams.country;
 	angular.element(document).ready(function () {
-        $('#advert').dataTable();
+        //$('#advert').dataTable();
 
     });
 
@@ -22,7 +22,7 @@ advertsController.controller('AdvertsController',
 	      'Content-Type' : 'application/json'
 	    },
 	    params:{
-	    	where: {'country': 'Ireland'}
+	    	where: {'country': $stateParams.country}
 	    } 
 	}).success(function (data, status) {
 		$scope.dataAdvert = data.results;
