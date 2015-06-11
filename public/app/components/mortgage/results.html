@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 col-md-offset-2 panel panel-default">
+      <ul class="nav nav-tabs">
+        <li ng-click="saveReport()"><a href><span class="fa fa-cloud"></span> Save</a></li>
+        <li ng-click="toPDF()"><a href><span class="fa fa-file-pdf-o"></span> To PDF</a></li>
+        <li ng-click="toCSV()"><a href><span class="fa fa-file-excel-o"></span> To CSV</a></li>
+        <li>
+          <a class="btn-no-action disabled" ng-click="checkIds(idsChecked)" href>
+            <span class="fa fa-bar-chart"></span>&nbsp;Compare
+          </a>
+        </li>
+      </ul>
+    </div>
+    <form id="form-hidden" action="" method="POST">
+    </form>
+  </div>
+</div>
+<table id="myTable" class="table">
+  <thead>
+    <tr>
+      <th><input type="checkbox" ng-model="CheckBoxModel.Master" ng-change="getAllIds()"></th>
+      <th ng-repeat="item in mortgageResults.headers">{{item}}</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="item in mortgageResults.rows">
+      <td><input class="check-result" type="checkbox" ng-model="Check" ng-click="saveIds(item.mortgageId.productId)"></td>      <td ng-show="item.mortgageName != null">{{item.mortgageName}}</td>
+      <td ng-show="item.apr != null">{{item.apr}}</td>
+      <td ng-show="item.cpt != null">{{item.cpt}}</td>
+      <td ng-show="item.dateOfRate != null">{{item.dateOfRate | limitTo:10 }}</td>
+      <td ng-show="item.fixedPeriod != null">{{item.fixedPeriod}}</td>
+      <td ng-show="item.grossRate != null">{{item.grossRate}}</td>
+      <td ng-show="item.maxLoanTerm != null">{{item.maxLoanTerm}}</td>
+      <td ng-show="item.maxLTV != null">{{item.maxLTV}}</td>
+      <td ng-show="item.minLoanAmount != null">{{item.minLoanAmount}}</td>
+      <td ng-show="item.mortgageProvider != null">{{item.mortgageProvider}}</td>
+      <td ng-show="item.regularOverPayments != null">{{item.regularOverPayments}}</td>
+      <td ng-show="item.totalAmountPayable != null">{{item.totalAmountPayable}}</td>
+      <td ng-show="item.valuationFEE != null">{{item.valuationFEE}}</td>
+      <td>
+        <div class="btn-group" role="group">
+          <button ng-click="seeDetails(item.mortgageId.productId)" type="button"
+            class="btn btn-primary" data-toggle="tooltip" data-placement="bottom"
+            title="See details"><i class="fa fa-eye"></i>
+          </button>
+          <button ng-click="exportDetailsToPDF(item.mortgageId.productId)" type="button"
+            class="btn btn-danger" data-toggle="tooltip" data-placement="bottom"
+            title="Download PDF"><i class="fa fa-file-pdf-o"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

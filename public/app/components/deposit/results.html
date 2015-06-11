@@ -1,0 +1,141 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 col-md-offset-2 panel panel-default">
+      <ul class="nav nav-tabs">
+          <li ng-click="saveReport()"><a href><span class="fa fa-cloud"></span> Save</a></li>
+          <li ng-click="toPDFDepositSearch()"><a href><span class="fa fa-file-pdf-o"></span> To PDF</a></li>
+          <li ng-click="toCSVDepositSearch()"><a href><span class="fa fa-file-excel-o"></span> To Excel</a></li>
+          <li>
+            <a class="btn-no-action disabled" ng-click="checkIdsArray(idsArray)" href>
+              <span class="fa fa-bar-chart"></span> Compare
+            </a>
+          </li>
+      </ul>
+    </div>
+    <form id="form-hidden-deposit-search" action="" method="POST">
+    </form>
+  </div>
+</div>
+<div class="table-responsive">
+  <div class="col-md-12">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th><input type="checkbox" ng-model="CheckBoxModel.Master" ng-change="getAllIds()"></th>
+          <th ng-repeat="item in depositResults.headers">{{item}}</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in depositResults.rows">
+          <td><input class="check-result" type="checkbox" ng-model="Check" ng-click="getIds(item.accountId)"></td>
+          <td ng-show="item.accountName != null && item.accountName !== ''">{{item.accountName}}</td>
+          <td ng-show="item.accountName == null && depositResults.headers.indexOf('Deposit Name') != -1">N/A</td>
+          <td ng-show="item.accountName == ''">N/A</td>
+          <td ng-show="item.dateOfRate != null && item.dateOfRate !== ''">{{item.dateOfRate}}</td>
+          <td ng-show="item.dateOfRate == null && depositResults.headers.indexOf('Date of Rate') != -1">N/A</td>
+          <td ng-show="item.dateOfRate == ''">N/A</td>
+          <td ng-show="item.accountType != null && item.accountType !== ''">{{item.accountType}}</td>
+          <td ng-show="item.accountType == null && depositResults.headers.indexOf('Account Type') != -1">N/A</td>
+          <td ng-show="item.accountType == ''">N/A</td>
+          <td ng-show="item.aer != null && item.aer !== ''">{{item.aer | number:2}}%</td>
+          <td ng-show="item.aer == null && depositResults.headers.indexOf('AER') != -1">N/A</td>
+          <td ng-show="item.aer == ''">N/A</td>
+          <td ng-show="item.atmAccess !== null && item.atmAccess === 'True'">Yes</td>
+          <td ng-show="item.atmAccess !== null && item.atmAccess === 'False'">No</td>
+          <td ng-show="item.atmAccess == null && depositResults.headers.indexOf('ATM Access') != -1">N/A</td>
+          <td ng-show="item.atmAccess == ''">N/A</td>
+          <td ng-show="item.bonuses != null && item.bonuses !== ''">{{item.bonuses}}</td>
+          <td ng-show="item.bonuses == null && depositResults.headers.indexOf('Bonuses') != -1">N/A</td>
+          <td ng-show="item.bonuses === ''">N/A</td>
+          <td ng-show="item.branchAccess !== null && item.branchAccess === 'True'">Yes</td>
+          <td ng-show="item.branchAccess !== null && item.branchAccess === 'False'">No</td>
+          <td ng-show="item.branchAccess == null && depositResults.headers.indexOf('Branch Access') != -1">N/A</td>
+          <td ng-show="item.branchAccess === ''">N/A</td>
+          <td ng-show="item.closingDate != null && item.closingDate !== ''">{{item.closingDate}}</td>
+          <td ng-show="item.closingDate == null && depositResults.headers.indexOf('Closing Date') != -1">N/A</td>
+          <td ng-show="item.closingDate === ''">N/A</td>
+          <td ng-show="item.comments != null && item.comments !== ''">{{item.comments}}</td>
+          <td ng-show="item.comments == null && depositResults.headers.indexOf('Comments') != -1">N/A</td>
+          <td ng-show="item.comments === ''">N/A</td>
+          <td ng-show="item.grossInterestEarned != null && item.grossInterestEarned !== ''">{{item.grossInterestEarned}}</td>
+          <td ng-show="item.grossInterestEarned == null && depositResults.headers.indexOf('Gross Interest Earned') != -1">N/A</td>
+          <td ng-show="item.grossInterestEarned === ''">N/A</td>
+          <td ng-show="item.grossProjectedInvestment != null && item.grossProjectedInvestment !== ''">{{item.grossProjectedInvestment}}</td>
+          <td ng-show="item.grossProjectedInvestment == null && depositResults.headers.indexOf('Gross Projected Investment') != -1">N/A</td>
+          <td ng-show="item.grossProjectedInvestment === ''">N/A</td>
+          <td ng-show="item.grossRate != null && item.grossRate !== ''">{{item.grossRate | number:2}}%</td>
+          <td ng-show="item.grossRate == null && depositResults.headers.indexOf('Gross Rate') != -1">N/A</td>
+          <td ng-show="item.grossRate === ''">N/A</td>
+          <td ng-show="item.incomeOption !== null && item.incomeOption === 'True'">Yes</td>
+          <td ng-show="item.incomeOption !== null && item.incomeOption === 'False'">No</td>
+          <td ng-show="item.incomeOption == null && depositResults.headers.indexOf('Income Option') != -1">N/A</td>
+          <td ng-show="item.incomeOption === ''">N/A</td>
+          <td ng-show="item.institution != null && item.institution !== ''">{{item.institution}}</td>
+          <td ng-show="item.institution == null && depositResults.headers.indexOf('Institution') != -1">N/A</td>
+          <td ng-show="item.institution === ''">N/A</td>
+          <td ng-show="item.interestPayDate != null && item.interestPayDate !== ''">{{item.interestPayDate}}</td>
+          <td ng-show="item.interestPayDate == null && depositResults.headers.indexOf('Interest Pay Date') != -1">N/A</td>
+          <td ng-show="item.interestPayDate === ''">N/A</td>
+          <td ng-show="item.internetAccess != null && item.internetAccess === 'True'">Yes</td>
+          <td ng-show="item.internetAccess != null && item.internetAccess === 'False'">No</td>
+          <td ng-show="item.internetAccess == null && depositResults.headers.indexOf('Internet Access') != -1">N/A</td>
+          <td ng-show="item.internetAccess === ''">N/A</td>
+          <td ng-show="item.maximumInvestmentAmount != null && item.maximumInvestmentAmount !== '' && item.maximumInvestmentAmount != 0.000000">{{item.maximumInvestmentAmount | number:2}}€</td>
+          <td ng-show="item.maximumInvestmentAmount == null && depositResults.headers.indexOf('Maximum Investment Amount') != -1">N/A</td>
+          <td ng-show="item.maximumInvestmentAmount == 0.000000">No maximum</td>
+          <td ng-show="item.maximumInvestmentAmount == ''">N/A</td>
+          <td ng-show="item.minimumInvestmentAmount != null && item.minimumInvestmentAmount !== '' && item.minimumInvestmentAmount != 0.000000">{{item.minimumInvestmentAmount | number:2}}€</td>
+          <td ng-show="item.minimumInvestmentAmount == null && depositResults.headers.indexOf('Minimum Investment Amount') != -1">N/A</td>
+          <td ng-show="item.minimumInvestmentAmount == 0.000000">No minimum</td>
+          <td ng-show="item.minimumInvestmentAmount == ''">N/A</td>
+          <td ng-show="item.netInterestEarned != null && item.netInterestEarned !== ''">{{item.netInterestEarned}}</td>
+          <td ng-show="item.netInterestEarned == null && depositResults.headers.indexOf('Net Interest Earned') != -1">N/A</td>
+          <td ng-show="item.netInterestEarned === ''">N/A</td>
+          <td ng-show="item.netProjectedInvestment != null && item.netProjectedInvestment !== ''">{{item.netProjectedInvestment}}</td>
+          <td ng-show="item.netProjectedInvestment == null && depositResults.headers.indexOf('Net Projected Investment') != -1">N/A</td>
+          <td ng-show="item.netProjectedInvestment === ''">N/A</td>
+          <td ng-show="item.netRate != null && item.netRate !== ''">{{item.netRate}}</td>
+          <td ng-show="item.netRate == null && depositResults.headers.indexOf('Net Rate') != -1">N/A</td>
+          <td ng-show="item.netRate === ''">N/A</td>
+          <td ng-show="item.phoneAccess != null && item.phoneAccess === 'True'">Yes</td>
+          <td ng-show="item.phoneAccess != null && item.phoneAccess === 'False'">No</td>
+          <td ng-show="item.phoneAccess == null && depositResults.headers.indexOf('Phone Access') != -1">N/A</td>
+          <td ng-show="item.phoneAccess === ''">N/A</td>
+          <td ng-show="item.postAccess != null && item.postAccess === 'True'">Yes</td>
+          <td ng-show="item.postAccess != null && item.postAccess === 'False'">No</td>
+          <td ng-show="item.postAccess == null && depositResults.headers.indexOf('Post Access') != -1">N/A</td>
+          <td ng-show="item.postAccess === ''">N/A</td>
+          <td ng-show="item.rateBand != null && item.rateBand !== ''">{{item.rateBand}}</td>
+          <td ng-show="item.rateBand == null && depositResults.headers.indexOf('Rate Band') != -1">N/A</td>
+          <td ng-show="item.rateBand === ''">N/A</td>
+          <td ng-show="item.regularIncomeOption != null && item.regularIncomeOption === 'True'">Yes</td>
+          <td ng-show="item.regularIncomeOption != null && item.regularIncomeOption === 'False'">No</td>
+          <td ng-show="item.regularIncomeOption == null && depositResults.headers.indexOf('Income Option') != -1">N/A</td>
+          <td ng-show="item.regularIncomeOption === ''">N/A</td>
+          <td ng-show="item.regularSavingOption != null && item.regularSavingOption === 'False'">No</td>
+          <td ng-show="item.regularSavingOption != null && item.regularSavingOption === 'True'">Yes</td>
+          <td ng-show="item.regularSavingOption == null && depositResults.headers.indexOf('Regular Saving Option') != -1">N/A</td>
+          <td ng-show="item.regularSavingOption === ''">N/A</td>
+          <td ng-show="item.restrictions != null && item.restrictions !== ''">{{item.restrictions}}</td>
+          <td ng-show="item.restrictions == null && depositResults.headers.indexOf('Restrictions') != -1">N/A</td>
+          <td ng-show="item.restrictions === ''">N/A</td>
+          <td>
+            <div class="btn-group" role="group">
+              <button ng-click="moreDetails(item.accountId)" type="button"
+              class="btn btn-primary"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="More details"><i class="glyphicon glyphicon-eye-open"></i></button>
+              <button ng-click="exportDetailsSearchToPDF(item.accountId)" type="button"
+              class="btn btn-danger"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Export to PDF"><i class="fa fa-file-pdf-o"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

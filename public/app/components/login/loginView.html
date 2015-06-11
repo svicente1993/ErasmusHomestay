@@ -1,0 +1,32 @@
+<div class="screen-30">
+  <form name="signinForm" novalidate>
+    <label>Email address</label>
+    <div class="form-group" show-errors>
+      <input type="text" ng-model="email" ng-pattern="/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/" name="email" class="form-control" placeholder="Email address" required>
+      <p class="help-block" ng-show="signinForm.email.$error.required">Is required</p>
+      <p class="help-block" ng-show="!signinForm.email.$error.required && signinForm.email.$error.pattern"></p>
+    </div>
+    <label>Password</label>&nbsp;
+    <div class="form-group" show-errors>
+      <input type="password" ng-model="password" name="pass"
+          class="form-control" placeholder="Password"
+          id="example" tabindex="0" data-toggle="popover" data-trigger="focus"
+          title="Password rules"
+          data-html="true"
+          data-content="<li ng-class='pwdValidLength'><strong>8 characters</strong></li>
+                        <li ng-class='pwdHasNumber'><strong>one number</strong></li>
+                        <li ng-class='pwdHasUpperLetter'><strong>one uppercase</strong></li>
+                        <li ng-class='pwdHasLowerLetter'><strong>one lowercase</strong></li>
+                        <li ng-class='pwdHasSpecialCharacter'><strong>one special character from #?!@$%^&*</strong></li>" required>
+      <p class="help-block" ng-show="signinForm.pass.$error.required">Is required</p>
+      <p class="help-block" ng-show="!signinForm.pass.$error.required && signinForm.pass.$error.passwordValidate">as</p>
+      <p class="help-block" ng-show='!signinForm.pass.$error.required && signinForm.pass.$error.passwordValidate.pwdHasNumber'>hello</p>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button ng-click="checkLogin()" class="btn btn-lg btn-primary btn-block">Log in</button>
+  </form>
+</div>

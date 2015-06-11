@@ -1,0 +1,290 @@
+<div class="container">
+  <div class="custom-alert hide">
+    <div class="alert alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <span id="text-info"></span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 panel panel-default">
+      <div class="page-header">
+        <h1 ng-if="details.product.mortgageProductName != null"><small>Details of </small> {{details.product.mortgageProductName}}</h1>
+        <h1 ng-if="details.product.mortgageProductName == null ||
+        details.product.mortgageProductName === ''"><small>No Results</small></h1>
+      </div>
+      <ul class="nav nav-tabs pull-right">
+        <li><a href><span class="fa fa-arrow-left"></span></a></li>
+        <li ng-click="exportToPDF()"><a href><span class="fa fa-file-pdf-o"></span></a></li>
+      </ul>
+    </div>
+    <form id="form-hidden-mortgage-details" action="" method="POST">
+    </form>
+
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">General Information</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+           <li class="list-group-item">Mortgage Provider
+             <span ng-if="details.bankCompany.mortgageProvider != null" class="pull-right bolder"> {{details.bankCompany.mortgageProvider}}</span>
+             <span ng-if="details.bankCompany.mortgageProvider == null ||
+             details.bankCompany.mortgageProvider === ''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Loan Type
+             <span ng-if="details.propertyType.propertyType != null" class="pull-right bolder"> {{details.propertyType.propertyType}}</span>
+             <span ng-if="details.propertyType.propertyType == null ||
+              details.propertyType.propertyType === ''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Mortgage Type
+             <span ng-if="details.mortgageType.mortgageType != null" class="pull-right bolder"> {{details.mortgageType.mortgageType}}</span>
+             <span ng-if="details.mortgageType.mortgageType == null ||
+             details.mortgageType.mortgageType === ''" class="pull-right bolder"> N/A </span>
+             </li>
+           <li class="list-group-item">Fixed Period
+             <span ng-if="details.fixedPeriod.text != null" class="pull-right bolder"> {{details.fixedPeriod.text}}</span>
+             <span ng-if="details.fixedPeriod.text == null ||
+             details.fixedPeriod.text === ''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Tracker Index - Name
+             <span ng-if="details.detailText.trackerIndexName != null" class="pull-right bolder"> {{details.detailText.trackerIndexName}}</span>
+             <span ng-if="details.detailText.trackerIndexName == null ||
+             details.detailText.trackerIndexName === ''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Tracker Index - Rate
+             <span ng-if="details.detailText.trackerIndexRate != null" class="pull-right bolder"> {{details.detailText.trackerIndexRate}}%</span>
+             <span ng-if="details.detailText.trackerIndexRate == null ||
+             details.detailText.trackerIndexRate === ''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Tracker Index - % Over Tracker Index
+             <span ng-if="details.detailText.pertoverTrackerIndex != null" class="pull-right bolder"> {{details.detailText.pertoverTrackerIndex}}%</span>
+             <span ng-if="details.detailText.pertoverTrackerIndex == null ||
+             details.detailText.pertoverTrackerIndex === ''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Buyer Type
+             <span ng-if="details.buyerType.buyerType != null" class="pull-right bolder"> {{details.buyerType.buyerType}}</span>
+             <span ng-if="details.buyerType.buyerType == null ||
+             details.buyerType.buyerType === ''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Single Income Requirements
+             <span ng-if="details.productDetail.singleIncomeRequirements != null" class="pull-right bolder"> {{details.productDetail.singleIncomeRequirements}}</span>
+             <span ng-if="details.productDetail.singleIncomeRequirements == null ||
+             details.productDetail.singleIncomeRequirements === ''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Joint Income Requirements
+             <span ng-if="details.productDetail.jointIncomeRequirements != null" class="pull-right bolder"> {{details.productDetail.jointIncomeRequirements}}</span>
+             <span ng-if="details.productDetail.jointIncomeRequirements == null ||
+             details.productDetail.jointIncomeRequirements === ''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Repayment Capacity
+             <span ng-if="details.productDetail.repaymentCapacity != null" class="pull-right bolder"> {{details.productDetail.repaymentCapacity}}</span>
+             <span ng-if="details.productDetail.repaymentCapacity == null ||
+             details.productDetail.repaymentCapacity === ''" class="pull-right bolder"> N/A </span>
+           </li>
+         </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Rates and Costs</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+           <li class="list-group-item">ECB Rate
+             <span ng-if="details.ecbRate != null" class="pull-right bolder"> {{details.ecbRate}}%</span>
+             <span ng-if="details.ecbRate == null || details.ecbRate ===''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Date of ECB Rate
+             <span ng-if="details.dateOfEcbRate != null" class="pull-right bolder"> {{details.dateOfEcbRate}}</span>
+             <span ng-if="details.dateOfEcbRate == null || details.dateOfEcbRate === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Rate
+             <span ng-if="details.ratePercent != null" class="pull-right bolder"> {{details.ratePercent}}%</span>
+             <span ng-if="details.ratePercent == null || details.ratePercent === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Date of Rate
+             <span ng-if="details.rate.dateOfRate != null" class="pull-right bolder"> {{details.rate.dateOfRate | date : 'MM/dd/yyyy'}}</span>
+             <span ng-if="details.rate.dateOfRate == null || details.rate.dateOfRate === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">APR
+             <span ng-if="details.rate.apr != null" class="pull-right bolder"> {{details.rate.apr}}%</span>
+             <span ng-if="details.rate.apr == null || details.rate.apr === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">CPT - 10 years
+             <span ng-if="details.rate.cpt10years != null" class="pull-right bolder bolder">{{details.rate.cpt10years}}%</span>
+             <span ng-if="details.rate.cpt10years == null || details.rate.cpt10years === ''"
+             class="pull-right bolder bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">CPT - 15 years
+             <span ng-if="details.rate.cpt15years != null" class="pull-right bolder">{{details.rate.cpt15years}}%</span>
+             <span ng-if="details.rate.cpt15years == null || details.rate.cpt15years === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">CPT - 20 years
+             <span ng-if="details.rate.cpt20years != null" class="pull-right bolder">{{details.rate.cpt20years}}%</span>
+             <span ng-if="details.rate.cpt20years == null || details.rate.cpt20years === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">CPT - 25 years
+             <span ng-if="details.rate.cpt25years != null" class="pull-right bolder">{{details.rate.cpt25years}}%</span>
+             <span ng-if="details.rate.cpt25years == null || details.rate.cpt25years === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">CPT - 30 years
+             <span ng-if="details.rate.cpt30years != null" class="pull-right bolder">{{details.rate.cpt30years}}%</span>
+             <span ng-if="details.rate.cpt30years == null || details.rate.cpt30years === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">CPT - 35 years
+             <span ng-if="details.rate.cpt35years != null" class="pull-right bolder">{{details.rate.cpt35years}}%</span>
+             <span ng-if="details.rate.cpt35years == null || details.rate.cpt35years === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">CPT - 40 years
+             <span ng-if="details.rate.cpt40years != null" class="pull-right bolder">{{details.rate.cpt40years}}%</span>
+             <span ng-if="details.rate.cpt40years == null || details.rate.cpt40years === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Valuation Fee
+             <span ng-if="details.productDetail.valuationFee != null" class="pull-right bolder"> {{details.productDetail.valuationFee}}</span>
+             <span ng-if="details.productDetail.valuationFee == null ||
+             details.productDetail.valuationFee === ''" class="pull-right bolder"> N/A </span>
+           </li>
+         </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Payment Options</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+           <li class="list-group-item">Repayment Type
+             <span ng-if="details.detailText.repaymentType != null" class="pull-right bolder"> {{details.detailText.repaymentType}}</span>
+             <span ng-if="details.detailText.repaymentType == null || details.detailText.repaymentType === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Lump sum payments
+             <span ng-if="details.productDetail.lumpSumPayments != null" class="pull-right bolder"> {{details.productDetail.lumpSumPayments}}</span>
+             <span ng-if="details.productDetail.lumpSumPayments == null || details.productDetail.lumpSumPayments === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Regular overpayments
+             <span ng-if="details.productDetail.regularOverPayments != null" class="pull-right bolder"> {{details.productDetail.regularOverPayments}}</span>
+             <span ng-if="details.productDetail.regularOverPayments == null || details.productDetail.regularOverPayments === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Payment Holidays
+             <span ng-if="details.productDetail.paymentHolidays != null" class="pull-right bolder"> {{details.productDetail.paymentHolidays}}</span>
+             <span ng-if="details.productDetail.paymentHolidays == null || details.productDetail.paymentHolidays === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Deferred Start
+             <span ng-if="details.detailText.deferredStart != null" class="pull-right bolder"> {{details.detailText.deferredStart}}</span>
+             <span ng-if="details.detailText.deferredStart == null || details.detailText.deferredStart === ''"
+             class="pull-right bolder"> N/A </span>
+           </li>
+         </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Special Offers</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+           <li class="list-group-item">Special Offers
+             <span ng-if="details.productDetail.specialOffers != null" class="bolder"> {{details.productDetail.specialOffers}}</span>
+             <span ng-if="details.productDetail.specialOffers == null ||
+             details.productDetail.specialOffers === ''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Loyalty Incentives
+             <span ng-if="details.productDetail.loyaltyIncentives != null" class="pull-right bolder"> {{details.productDetail.loyaltyIncentives}}</span>
+             <span ng-if="details.productDetail.loyaltyIncentives == null ||
+             details.productDetail.loyaltyIncentives === ''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Drawdown Incentives
+             <span ng-if="details.detailText.drawDownIncentives != null" class="pull-right bolder"> {{details.detailText.drawDownIncentives}}</span>
+             <span ng-if="details.detailText.drawDownIncentives == null ||
+             details.detailText.drawDownIncentives === ''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Cross selling reductions
+             <span ng-if="details.productDetail.crossSellingReductions != null" class="pull-right bolder"> {{details.productDetail.crossSellingReductions}}</span>
+             <span ng-if="details.productDetail.crossSellingReductions == null ||
+             details.productDetail.crossSellingReductions === ''" class="pull-right bolder"> N/A </span>
+           </li>
+           <li class="list-group-item">Mortgage Chequebook
+             <span ng-if="details.detailText.mortgageChequeBox != null" class="pull-right bolder"> {{details.detailText.mortgageChequeBox}}</span>
+             <span ng-if="details.detailText.mortgageChequeBox == null ||
+             details.detailText.mortgageChequeBox === ''" class="pull-right bolder"> N/A </span>
+           </li>
+         </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Additional Information</h3>
+        </div>
+        <div class="panel-body">
+          <div class="col-md-6">
+            <ul class="list-group">
+             <li class="list-group-item">Maximun LTV
+               <span ng-if="details.detailText.maxLoanToValue != null" class="pull-right bolder"> {{details.detailText.maxLoanToValue}}%</span>
+               <span ng-if="details.detailText.maxLoanToValue == null ||
+               details.detailText.maxLoanToValue === ''" class="pull-right bolder"> N/A </span>
+             </li>
+             <li class="list-group-item">Loan amount maximun
+               <span ng-if="details.detailText.loanAmtMax != null" class="pull-right bolder"> €{{details.detailText.loanAmtMax | number:2}}</span>
+               <span ng-if="details.detailText.loanAmtMax == null ||
+               details.detailText.loanAmtMax === ''" class="pull-right bolder"> N/A </span>
+             </li>
+             <li class="list-group-item">Loan amount minimum
+               <span ng-if="details.detailText.loanAmtMin != null" class="pull-right bolder"> €{{details.detailText.loanAmtMin | number:2}}</span>
+               <span ng-if="details.detailText.loanAmtMin == null ||
+               details.detailText.loanAmtMin === ''" class="pull-right bolder"> N/A </span>
+             </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-group">
+             <li class="list-group-item">Maximun term length
+               <span ng-if="details.detailText.maxLoanTerm != null && details.detailText.maxLoanTerm === 1" class="pull-right bolder"> {{details.detailText.maxLoanTerm}} Year</span>
+               <span ng-if="details.detailText.maxLoanTerm != null && details.detailText.maxLoanTerm !== 1" class="pull-right bolder"> {{details.detailText.maxLoanTerm}} Years</span>
+               <span ng-if="details.detailText.maxLoanTerm == null ||
+               details.detailText.maxLoanTerm === ''" class="pull-right bolder"> N/A </span>
+             </li>
+             <li class="list-group-item">Split loan
+               <span ng-if="details.detailText.splitLoans != null" class="pull-right bolder"> {{details.detailText.splitLoans}}</span>
+               <span ng-if="details.detailText.splitLoans == null ||
+               details.detailText.splitLoans === ''" class="pull-right bolder"> N/A </span>
+             </li>
+             <li class="list-group-item">Tie in period
+               <span ng-if="details.productDetail.tieInPeriod != null" class="pull-right bolder"> {{details.productDetail.tieInPeriod}}</span>
+               <span ng-if="details.productDetail.tieInPeriod == null ||
+               details.productDetail.tieInPeriod === ''" class="pull-right bolder"> N/A </span>
+             </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
