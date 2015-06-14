@@ -1,36 +1,134 @@
 <div class="container">
     <div class="row">
-    	<table id="mytable" class="table table-bordred table-striped">
-	        <thead>
-                <th>#</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Address</th>
-                <th>Town</th>
-                <th>Region</th>
-                <th>Country</th>
-                <th>Edit</th>
-                <th>Delete</th>
-	        </thead>
-	        <tbody>
-	            <tr ng-repeat="item in dataAdvert">
-	                <td>{{ $index+1 }}</td>
-	                <td>{{ item.title }}</td>
-	                <td>{{ item.price }}</td>
-	                <td>{{ item.address }}</td>
-	                <td>{{ item.town }}</td>
-	                <td>{{ item.region }}</td>
-	                <td>{{ item.country }}</td>
-	                <td>
-	                	<p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button>
-	                	</p>
-	                </td>
+		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#newAdvert"  ng-click="newAdvert()">
+			<span class="fa fa-plus"></span>
+		</button>
+	    <br/>
+	    <br/>
+		<table id="mytable" class="table table-bordred table-striped">
+		    <thead>
+		        <th>#</th>
+		        <th>Title</th>
+		        <th>Price</th>
+		        <th>Address</th>
+		        <th>Town</th>
+		        <th>Region</th>
+		        <th>Country</th>
+		        <th>Edit</th>
+		        <th>Delete</th>
+		    </thead>
+		    <tbody>
+		        <tr ng-repeat="item in dataAdvert">
+		            <td>{{ $index+1 }}</td>
+		            <td>{{ item.title }}</td>
+		            <td>{{ item.price }}€</td>
+		            <td>{{ item.address }}</td>
+		            <td>{{ item.town }}</td>
+		            <td>{{ item.region }}</td>
+		            <td>{{ item.country }}</td>
+		            <td>
+		            	<p title="Edit">
+		            		<button class="btn btn-primary btn">
+		            			<span class="fa fa-pencil"></span>
+		            		</button>
+		            	</p>
+		            </td>
 					<td>
-						<p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button>
+						<p title="Delete">
+							<button class="btn btn-danger btn">
+								<span class="fa fa-trash"></span>
+							</button>
 						</p>
 					</td>
-	            </tr>
-	        </tbody>
-	    </table>
+		        </tr>
+		    </tbody>
+		</table>
     </div>
+</div>
+<!-- Modal New Advert-->
+<div class="modal fade" id="newAdvert" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">New Advert</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-advert">
+        	Advert's user:
+			<select class="form-control" ng-model="User" ng-options="user.name for user in users track by user.objectId">
+				<option value="">-- Choose user --</option>
+			</select>
+			<hr/>
+
+			<input type="text" class="form-control" placeholder="Title" maxlength="30">
+			<br/>
+			
+			<textarea class="form-control" rows="2" placeholder="Advert" maxlength="100"></textarea>
+			<br/>
+			
+			<input type="number" class="form-control" placeholder="Price" maxlength="5">
+			<br/>
+			
+			<h4>Rules:</h4>
+			<label class="checkbox-inline">
+			  <input type="checkbox" id="check-rules-1" value="option-rules-1">Please keep our home secure and double-lock the front door when entering and leaving the house.
+			</label>
+			<br/>
+			<label class="checkbox-inline">
+			  <input type="checkbox" id="check-rules-2" value="option-rules-2">You are welcome to use the kitchen but please clean up after yourself.
+			</label>
+			<br/>
+			<label class="checkbox-inline">
+			  <input type="checkbox" id="check-rules-3" value="option-rules-3">Smoking is allowed outdoors only.
+			</label>
+			<br/>
+			<label class="checkbox-inline">
+			  <input type="checkbox" id="check-rules-4" value="option-rules-4">Please do not invite strangers into my home.
+			</label>
+			<br/>
+			<label class="checkbox-inline">
+			  <input type="checkbox" id="check-rules-5" value="option-rules-5">No smoking in doors.
+			</label>
+			<br/>
+			<label class="checkbox-inline">
+			  <input type="checkbox" id="check-rules-6" value="option-rules-6">No loud music after hours.
+			</label>
+			<br/>
+			<label class="checkbox-inline">
+			  <input type="checkbox" id="check-rules-7" value="option-rules-7">Must like pets.
+			</label>
+			<br/>
+			<br/>
+
+			<h4>House Facilities:</h4>
+			<label class="checkbox-inline">
+			  <input type="checkbox" id="check-facilit-1" value="option-facilit-1">Barbecue.
+			</label>
+			<label class="checkbox-inline">
+			  <input type="checkbox" id="check-facilit-2" value="option-facilit-2">Internet.
+			</label>
+			<label class="checkbox-inline">
+			  <input type="checkbox" id="check-facilit-3" value="option-facilit-3">TV.
+			</label>
+			<br/>
+			<label class="checkbox-inline">
+			  <input type="checkbox" id="check-facilit-4" value="option-facilit-4">Computer.
+			</label>
+			<label class="checkbox-inline">
+			  <input type="checkbox" id="check-facilit-5" value="option-facilit-5">Laundry.
+			</label>
+			<label class="checkbox-inline">
+			  <input type="checkbox" id="check-facilit-6" value="option-facilit-6">Bikes.
+			</label>
+			<br/>
+
+
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -5,3 +5,9 @@ body{
 .container{
 	padding-top: 60px;
 }
+
+.form-advert{
+	margin: 0 auto;
+	max-width: 500px;
+	min-width: 200px;
+}
