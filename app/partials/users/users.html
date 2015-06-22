@@ -1,1 +1,130 @@
-users.html
+<div class="container">
+    <div class="row">
+		<button type="button" id="btn-form-user" class="btn btn-success" data-toggle="modal" data-target="#new-user" ng-click="newUser()" >
+			<span class="fa fa-plus"></span>
+		</button>
+	    <br/>
+	    <br/>
+		<table id="mytable" class="table table-bordred table-striped">
+		    <thead>
+		        <th>#</th>
+		        <th>Email</th>
+		        <th>Name</th>
+		        <th>Last Name</th>
+		        <th>Phone</th>
+		        <th>Photo</th>
+		        <th>Edit</th>
+		        <th>Delete</th>
+		    </thead>
+		    <tbody>
+		        <tr ng-repeat="item in dataUsers">
+		            <td>{{ $index+1 }}</td>
+		            <td>{{ item.email }}</td>
+		            <td>{{ item.name }}</td>
+		            <td>{{ item.lastName }}</td>
+		            <td>{{ item.phone }}</td>
+		            <td><img src="{{ item.photo.url }}" width="100" height="100"></td>
+		            <td>
+		            	<p title="Edit">
+		            		<button class="btn btn-primary btn" data-target="#edit-user" data-toggle="modal" ng-click="editUser(item.objectId)">
+		            			<span class="fa fa-pencil"></span>
+		            		</button>
+		            	</p>
+		            </td>
+					<td>
+						<p title="Delete">
+							<button class="btn btn-danger btn" ng-click="deleteUser(item.objectId)">
+								<span class="fa fa-trash"></span>
+							</button>
+						</p>
+					</td>
+		        </tr>
+		    </tbody>
+		</table>
+    </div>
+</div>
+
+<!-- Modal New User-->
+<div class="modal fade" id="new-user" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">New User</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-user" ng-submit="uploadImage()">
+        	<input type="text" ng-model="NameUser" class="form-control" placeholder="Name" maxlength="30" autofocus >
+			<br/>
+			
+			<input type="text" ng-model="LastNameUser" class="form-control" placeholder="Last Name" maxlength="60">
+			<br/>
+			
+			<input type="email" ng-model="EmailUser" class="form-control" placeholder="Email">
+			<br/>
+			
+			<input type="password" ng-model="PasswordUser" class="form-control" placeholder="Password">
+			<br/>
+
+			<input type="text" ng-model="PhoneUser" class="form-control" placeholder="Phone">
+			<br/>
+
+			Photo profile: 
+			<br/>
+			<input id="uploadImage" type="file" name="myPhoto"/>
+			<br/>
+
+			<div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Save changes</button>
+		        <input type="reset" id="reset-form-new" value="Reset!" hidden>
+		    </div>
+
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Modal New User-->
+
+<!-- Modal Edit User-->
+<div class="modal fade" id="edit-user" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">New User</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-user" ng-submit="putUser()">
+        	<input type="text" ng-model="NameUser" class="form-control" placeholder="Name" maxlength="30" autofocus >
+			<br/>
+			
+			<input type="text" ng-model="LastNameUser" class="form-control" placeholder="Last Name" maxlength="60">
+			<br/>
+			
+			<input type="email" ng-model="EmailUser" class="form-control" placeholder="Email">
+			<br/>
+			
+			<input type="password" ng-model="PasswordUser" class="form-control" placeholder="Password">
+			<br/>
+
+			<input type="text" ng-model="PhoneUser" class="form-control" placeholder="Phone">
+			<br/>
+
+			Photo profile: 
+			<br/>
+			<div class="uploadPreview">
+				<img class="edit" width="100" height="100">
+			</div>
+
+			<div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Save changes</button>
+		        <input type="reset" id="reset-form-edit" value="Reset!" hidden>
+		    </div>
+
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Modal Edit User-->

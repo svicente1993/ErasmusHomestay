@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+		<table id="mytable" class="table table-bordred table-striped">
+		    <thead>
+		        <th>#</th>
+		        <th>Advert</th>
+		        <th>Student</th>
+		        <th>Comment</th>
+		        <th>Star</th>
+		        <th>Delete</th>
+		    </thead>
+		    <tbody>
+		        <tr ng-repeat="item in dataComment">
+		            <td>{{ $index+1 }}</td>
+		            <td>{{ item.advert }}</td>
+		            <td>{{ item.student }}</td>
+		            <td style="width:30%">{{ item.comment }}</td>
+		            <td>{{ item.star }}</td>
+					<td>
+						<p title="Delete">
+							<button class="btn btn-danger btn" ng-click="deleteComment(item.objectId)">
+								<span class="fa fa-trash"></span>
+							</button>
+						</p>
+					</td>
+		        </tr>
+		    </tbody>
+		</table>
+    </div>
+</div>
